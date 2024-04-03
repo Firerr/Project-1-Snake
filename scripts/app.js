@@ -69,14 +69,26 @@ function startGame() {
                 } while (cells[appleIdx].classList.contains('snake'))
                 cells[appleIdx].classList.add('apple')
 
-          //this was testing to get a random cell, then applying class to the cell (turns out it was grid being used instead of cells)      
-        //let randomCell = Math.floor(Math.random() * cells.length)
-        //cells[randomCell].classList.add('apple')
+                //this was testing to get a random cell, then applying class to the cell (turns out it was grid being used instead of cells)      
+                //let randomCell = Math.floor(Math.random() * cells.length)
+                //cells[randomCell].classList.add('apple')
         }
 
         appleRNG()
 
+        //time for snake to move around, no longer stationery
+        intervalTime = 1000
+        //snake location
+        snakeArray = [292, 293, 294]
+        currentIdx = 0;
+        //needed to clear the snake
+        snakeArray.forEach((idx) => cells[idx].classList.add('snake'));
+        //moves the snake every 1000ms, just read below for more moveOutcome
+        interval = setInterval(moveOutcome, intervalTime);
 }
+
+        
+
 
 // On Page Load
 startGame()
