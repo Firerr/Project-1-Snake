@@ -1,0 +1,56 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.grid-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#grid {
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
+    height: 600px;
+    width: 700px;
+    background-color: rgba(169, 224, 0, 1);
+    border-style: dashed;
+}
+
+#grid div {
+    border: 1px solid rbga(169,224,0,);
+    display:  inline-block;
+    
+}
+
+#grid .snake_head-up {
+    background-image: url('');
+    background-repeat:no-repeat;
+    background-size:contain;
+}
+
+#grid .snake_head_down{
+    background-image: url('');
+}
+
+#grid .snake_head_left {
+    background-image: url('');
+}
+
+#grid .snake_head_right {
+    background-image: url('');
+}
+
+#grid .snake_body {
+    background-image: url('');
+}
+
+#grid .apple {
+    background-image:url('/assets/food.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
