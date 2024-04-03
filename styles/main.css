@@ -27,30 +27,45 @@ body {
     
 }
 
-#grid .snake_head-up {
-    background-image: url('');
+
+.snake {
+    background: black;
+}
+
+.apple {
+    background-image:url('/assets/food.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/*I would of loved to use the snake code below but it just wasnt cooperating
+
+/* .snake_head-up {
+    background-image: url('.snake_head-up');
     background-repeat:no-repeat;
     background-size:contain;
 }
 
-#grid .snake_head_down{
-    background-image: url('');
+.snake_head_down{
+    background-image: url('.snake_head_down');
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
-#grid .snake_head_left {
-    background-image: url('');
+.snake_head_left {
+    background-image: url('.snake_head_left');
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
-#grid .snake_head_right {
-    background-image: url('');
+.snake_head_right {
+    background-image: url('.snake_head_right');
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
-#grid .snake_body {
-    background-image: url('');
-}
-
-#grid .apple {
-    background-image:url('/assets/food.png');
+.snake_body {
+    background-image: url('.snake_body');
     background-repeat: no-repeat;
     background-size: contain;
 }

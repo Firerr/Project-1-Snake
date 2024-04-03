@@ -28,32 +28,54 @@ const grid = document.querySelector('#grid')
 const height = 20
 const width = 20
 const cellCount = height * width
-const startingPos = 292
-const cells = []
+let cells = []
+let snakeArray = [292, 293, 294]
+let appleIdx
+let intervalTime = 0
+let interval = 0
+let direction = 1
+let speed = 1
+
 
 function startGame() {
-//Generate grid cells
-    for (let idx = 0; idx < cellCount; idx++) {
-    
-//Generate element
-        const cell = document.createElement('div')
-        cell.innerText = idx
-        cell.dataset.index = idx
-        cell.classList.add('grid-cell')
+        //Generate grid cells
+        for (let idx = 0; idx < cellCount; idx++) {
 
-//Place tile in the starting cells
-        current
+                //Generate element
+                const cell = document.createElement('div')
+                cell.innerText = idx
+                cell.dataset.index = idx
+                cell.classList.add('grid-cell')
 
-//cell height and width
-        cell.style.height = `${100 / height}%`
-        cell.style.width = `${100 / width}%`
+                //cell height and width
+                cell.style.height = `${100 / height}%`
+                cell.style.width = `${100 / width}%`
 
-//Add cell to the UI
-        grid.append(cell)
+                //Add cell to the UI
+                grid.append(cell)
 
-//Add the cell to the cells aray
-        cells.push(cells)
-    }
+                //Add the cell to the cells aray
+                cells.push(cell)
+
+        }
+        //iniate appleRNG
+        // let cells = classList.add('apple')
+        // appleRNG(cells)
+
+        //the apple spawner, by use of math random, but it doesn't spawn the apple inside of the snake, no free apples (the while loop)
+        function appleRNG() {
+                do {
+                        appleIdx = Math.floor(Math.random() * cells.length)
+                } while (cells[appleIdx].classList.contains('snake'))
+                cells[appleIdx].classList.add('apple')
+
+          //this was testing to get a random cell, then applying class to the cell (turns out it was grid being used instead of cells)      
+        //let randomCell = Math.floor(Math.random() * cells.length)
+        //cells[randomCell].classList.add('apple')
+        }
+
+        appleRNG()
+
 }
 
 // On Page Load
