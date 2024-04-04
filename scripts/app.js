@@ -87,7 +87,7 @@ function startGame() {
         //checks what happens every second when moving, ie hitting something if not move the snake
         function moveOutcome() {
                 let cells = document.querySelectorAll('.grid div')
-                if (checkForHits(cells)) {
+                if (checkForHits()) {
                         alert('you hit something')
                         return clearInterval(interval)
                 } else {
@@ -102,9 +102,14 @@ function startGame() {
                 //what happens when a apple is eaten, the snake grows another cell
                 eatApple(cells, tail)
                 cells[snakeArray[0]].classList.add("snake")
-        }
 
-        function checkForHits(cells) {
+        }
+        
+        function checkForHits() {//s.A[0]is the snakes head
+                console.log('snakeArray' ,snakeArray[0])
+                console.log('direction' ,direction)
+                console.log(cells[snakeArray[0] + direction])
+                console.log(cells)
                 if (
                         (snakeArray[0] + width >= width * width && direction === width) ||
                         (snakeArray[0] % width === width - 1 && direction === 1) ||
@@ -115,8 +120,23 @@ function startGame() {
                         return true
                 } else {
                         return false
+                }//basically if any of the above statements are deemed true the snake has hit something, walls or itself, therefore the game has ended
+        }
+
+        function eatApple(cells, tail) {
+                if (cells[snakeArray[0]].classList.contains('apple')) {
+                        cells[snakeArray[0]].classList.remove('apple')
+                        cells[tail].classList.add("snake")
+                        snakeArray.push(tail)
+                        randomApple(cells)
+                        score++;
+                        scoreDisplay.textContent = score
+                        clearInterval(interval)
+                        intervalTime = intervalTime * speed
+                        interval = setInterval(moveOutcome, intervalTime)
                 }
         }
+
 }
 
 
