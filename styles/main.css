@@ -35,7 +35,7 @@ body {
 .apple {
     background-image:url('/assets/food.png');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 60%;
 }
 
 /*I would of loved to use the snake code below but it just wasnt cooperating

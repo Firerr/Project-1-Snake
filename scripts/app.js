@@ -68,26 +68,58 @@ function startGame() {
                         appleIdx = Math.floor(Math.random() * cells.length)
                 } while (cells[appleIdx].classList.contains('snake'))
                 cells[appleIdx].classList.add('apple')
-
                 //this was testing to get a random cell, then applying class to the cell (turns out it was grid being used instead of cells)      
                 //let randomCell = Math.floor(Math.random() * cells.length)
                 //cells[randomCell].classList.add('apple')
         }
-
         appleRNG()
-
         //time for snake to move around, no longer stationery
         intervalTime = 1000
-        //snake location
+        //snake location and direction the snake will go
+        direction = 1
         snakeArray = [292, 293, 294]
-        currentIdx = 0;
+        currentIdx = 0
         //needed to clear the snake
-        snakeArray.forEach((idx) => cells[idx].classList.add('snake'));
+        snakeArray.forEach((idx) => cells[idx].classList.add('snake'))
         //moves the snake every 1000ms, just read below for more moveOutcome
-        interval = setInterval(moveOutcome, intervalTime);
+        interval = setInterval(moveOutcome, intervalTime)
+
+        //checks what happens every second when moving, ie hitting something if not move the snake
+        function moveOutcome() {
+                let cells = document.querySelectorAll('.grid div')
+                if (checkForHits(cells)) {
+                        alert('you hit something')
+                        return clearInterval(interval)
+                } else {
+                        moveSnake(cells)
+                }
+        }
+        //defines the tail as the last block of the back of the snake (removes it for movement when going a direction, then readds it with unshift)
+        function moveSnake(cells) {
+                let tail = snakeArray.pop()
+                cells[tail].classList.remove('snake')
+                snakeArray.unshift(snakeArray[0] + direction)
+                //what happens when a apple is eaten, the snake grows another cell
+                eatApple(cells, tail)
+                cells[snakeArray[0]].classList.add("snake")
+        }
+
+        function checkForHits(cells) {
+                if (
+                        (snakeArray[0] + width >= width * width && direction === width) ||
+                        (snakeArray[0] % width === width - 1 && direction === 1) ||
+                        (snakeArray[0] % width === 0 && direction === -1) ||
+                        (snakeArray[0] - width <= 0 && direction === -width) ||
+                        cells[snakeArray[0] + direction].classList.contains('snake')
+                ) {
+                        return true
+                } else {
+                        return false
+                }
+        }
 }
 
-        
+
 
 
 // On Page Load
